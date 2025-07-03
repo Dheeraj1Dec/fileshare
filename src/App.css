@@ -1,0 +1,60 @@
+/* write your css here */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+    overflow-x: hidden;
+}
+
+.spinner {
+    width: 56px;
+    height: 56px;
+    display: grid;
+    border-radius: 50%;
+    -webkit-mask: radial-gradient(farthest-side,#0000 40%,#474bff 41%);
+    background: linear-gradient(0deg ,rgba(71,75,255,0.5) 50%,rgba(71,75,255,1) 0) center/4.5px 100%,
+         linear-gradient(90deg,rgba(71,75,255,0.25) 50%,rgba(71,75,255,0.75) 0) center/100% 4.5px;
+    background-repeat: no-repeat;
+    animation: spinner-d3o0rx 1s infinite steps(12);
+ }
+ 
+ .spinner::before,
+ .spinner::after {
+    content: "";
+    grid-area: 1/1;
+    border-radius: 50%;
+    background: inherit;
+    opacity: 0.915;
+    transform: rotate(30deg);
+ }
+ 
+ .spinner::after {
+    opacity: 0.83;
+    transform: rotate(60deg);
+ }
+ 
+ @keyframes spinner-d3o0rx {
+    100% {
+       transform: rotate(1turn);
+    }
+ }
+
+ .lable-style {
+  @apply text-[14px] text-richblack-5;
+}
+.form-style {
+  @apply rounded-lg bg-richblack-700 p-3 text-[16px] leading-[24px] text-richblack-5 shadow-[0_1px_0_0] shadow-white/50 placeholder:text-richblack-200 focus:outline-none;
+}
+
+.label-style-new{
+  @apply text-[0.875rem] leading-[1.375rem] text-richblack-5
+}
+
+.div-style{
+  @apply flex flex-col gap-y-2
+}
+
+.error-style{
+  @apply ml-2 text-xs tracking-wide text-pink-200
+}
