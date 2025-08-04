@@ -65,6 +65,25 @@ const AllFiles = () => {
     }
   };
 
+  // Programmatic download handler
+  const handleDownload = async (url, fileName) => {
+    try {
+      const response = await fetch(url);
+      const blob = await response.blob();
+      const downloadUrl = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = downloadUrl;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(downloadUrl);
+    } catch (error) {
+      console.error('Download failed:', error);
+      toast.error('Download failed');
+    }
+  };
+
   return (
     <div className="min-h-screen px-6 py-10 bg-gray-950 text-white">
       <h1 className="text-3xl font-bold mb-8 text-center">Your Uploaded Files</h1>
@@ -97,18 +116,17 @@ const AllFiles = () => {
                   View File
                 </a>
                 <button
-                  onClick={() => handleCopy(file.shortUrl, file._id)}                  
+                  onClick={() => handleCopy(file.shortUrl, file._id)}
                   className="inline-block mt-3 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-bold transition"
                 >
                   {copiedFileId === file._id ? 'Copied!' : 'Copy URL'}
                 </button>
-                <a
-                  href={file.url}
-                  download
+                <button
+                  onClick={() => handleDownload(file.url, file.fileName)}
                   className="inline-block mt-3 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-bold transition"
                 >
                   Download
-                </a>
+                </button>
               </div>
             </div>
           </div>
