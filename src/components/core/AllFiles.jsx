@@ -11,12 +11,12 @@ const AllFiles = () => {
 
   useEffect(() => {
     console.log("Fetching files for token:", token);
-    if (token  && !fetched) {
+    if (token && !fetched) {
       dispatch(getAllFiles(token));
     }
-  }, [dispatch, token]);
-  
-  {/* Checking the file type and showing preview */}
+  }, [dispatch, token, fetched]);
+
+  // Checking the file type and showing preview
   const getFileTypeIcon = (fileName) => {
     if (!fileName) return <FiFileText className="text-xl" />;
     if (fileName.match(/\.(jpeg|jpg|png|gif)$/i)) return <FiImage className="text-xl" />;
@@ -50,19 +50,18 @@ const AllFiles = () => {
     }
   };
 
-  {/* Copying the link to clipboard */}
-
+  // Copying the link to clipboard
   const [copiedFileId, setCopiedFileId] = useState(null);
 
   const handleCopy = async (textToCopy, fileId) => {
     try {
       await navigator.clipboard.writeText(textToCopy);
       setCopiedFileId(fileId);
-      toast.success("Copied to ClipBoard");
-      setTimeout(() => setCopiedFileId(null) , 1000);
+      toast.success("Copied to Clipboard");
+      setTimeout(() => setCopiedFileId(null), 1000);
     } catch (error) {
-      console.error("Failed to Copy: ", error);
-      toast.error("Failed to Copy")
+      console.error("Failed to Copy:", error);
+      toast.error("Failed to Copy");
     }
   };
 
@@ -88,7 +87,7 @@ const AllFiles = () => {
               <p className="text-sm text-gray-400">
                 Expires At: {new Date(file.expiry).toLocaleString()}
               </p>
-              <div className='flex gap-x-2'>
+              <div className="flex gap-x-2">
                 <a
                   href={file.url}
                   target="_blank"
@@ -103,6 +102,13 @@ const AllFiles = () => {
                 >
                   {copiedFileId === file._id ? 'Copied!' : 'Copy URL'}
                 </button>
+                <a
+                  href={file.url}
+                  download
+                  className="inline-block mt-3 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-bold transition"
+                >
+                  Download
+                </a>
               </div>
             </div>
           </div>
