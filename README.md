@@ -5,16 +5,6 @@
 
 ---
 
-## 🔗 Live Website
-
-> 🟢 Hosted on Vercel: [https://file-share-delta.vercel.app](https://file-share-delta.vercel.app)
-
-Backend: [https://file-share-server-k5hr.onrender.com](https://file-share-server-k5hr.onrender.com)
-
-Backend Repo: [https://github.com/SajjanYadav/Server](https://github.com/SajjanYadav/Server)
-
----
-
 ## ✨ Features
 
 - 🔐 User login & signup with JWT and Auth0
@@ -122,4 +112,4 @@ This project is licensed under the **MIT License**.
 
 ## 🙋‍♂️ Author
 
-Made with ❤️ by [@SajjanYadav](https://github.com/SajjanYadav)
+Made with ❤️ by [@Dheeraj1Dec](https://github.com/Dheeraj1Dec)
